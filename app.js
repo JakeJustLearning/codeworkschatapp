@@ -56,10 +56,12 @@ $(document).ready(function() {
 
     function getUserMessage() {
         let temp = document.querySelector('#text-input').value
-
-        postMessage(temp, 'user')
         document.querySelector('#text-input').value = ''
-        getYeezy()
+        postMessage(temp, 'user')
+        $("#dialog-zone").prepend(postMessage(temp, 'user'))
+        $('.message:first-child').fadeIn(500, function() {
+            getYeezy()
+        });
 
     }
 
@@ -68,13 +70,26 @@ $(document).ready(function() {
         const sendTime = new Date()
         const date = sendTime.toLocaleDateString('en-US')
         const time = (sendTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
-        $('#dialog-zone').prepend(
-            `<p class="message ${(author == "bot")?"bot-message":"user-message"}">${input} </br>(${date} ${time}) </p>`
-        )
+        return `<p style="display:none" class="message ${(author == "bot")?"bot-message":"user-message"}">${input} </br>(${date} ${time}) </p>`
     }
 
-    function getYeezy() {
-        fetch('https://api.kanye.rest').then(response => response.json()).then(quote => postMessage(quote.quote, 'bot'))
-            // fetch method adapted from https://morioh.com/p/c57b2941ac28
+    async function getYeezy() {
+        console.log('getting yeez')
+        const breakfast = fetch('https://api.kanye.rest')
+            .then(
+                res => res.json()
+            )
+            .then(
+                data => $("#dialog-zone").prepend(postMessage(data.quote, 'bot'))
+                .ready($('.message:first-child').fadeIn(500, function() {
+                    console.log("i fade")
+                }))
+            )
+
+
     }
+    // console.log(fetch('https://api.kanye.rest').then().quote)
+    // return fetch('https://api.kanye.rest').then(response => response.json()).then(quotes => quotes.quote)
+    // fetch method adapted from https://morioh.com/p/c57b2941ac28
+    // console.log(yeez)
 })
