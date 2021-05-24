@@ -81,9 +81,14 @@ $(document).ready(function() {
             )
             .then(
                 data => $("#dialog-zone").prepend(postMessage(data.quote, 'bot'))
-                .ready($('.message:first-child').fadeIn(500, function() {
-                    console.log("i fade")
-                }))
+                .ready(function() {
+                    $('.message:first-child').fadeIn(500)
+                        // new Audio('assets/feelit.mp3').play()
+
+                    //     console.log("i fade")
+
+                    // })
+                })
             )
 
 
