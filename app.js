@@ -54,14 +54,17 @@ $(document).ready(function() {
 
     })
 
+
     function getUserMessage() {
         let temp = document.querySelector('#text-input').value
         document.querySelector('#text-input').value = ''
-        postMessage(temp, 'user')
+            // postMessage(temp, 'user')
         $("#dialog-zone").prepend(postMessage(temp, 'user'))
         $('.message:first-child').fadeIn(500, function() {
-            getYeezy()
-        });
+            $("#dialog-zone").prepend(postMessage('Thank you for sharing that with me.', 'bot')).ready(function() {
+                $('.message:first-child').fadeIn(500)
+            })
+        })
 
     }
 
@@ -73,28 +76,20 @@ $(document).ready(function() {
         return `<p style="display:none" class="message ${(author == "bot")?"bot-message":"user-message"}">${input} </br>(${date} ${time}) </p>`
     }
 
-    async function getYeezy() {
-        console.log('getting yeez')
-        const breakfast = fetch('https://api.kanye.rest')
-            .then(
-                res => res.json()
-            )
-            .then(
-                data => $("#dialog-zone").prepend(postMessage(data.quote, 'bot'))
-                .ready(function() {
-                    $('.message:first-child').fadeIn(500)
-                        // new Audio('assets/feelit.mp3').play()
+    // async function getYeezy() {
+    //     console.log('getting yeez')
+    //     const breakfast = fetch('https://api.kanye.rest')
+    //         .then(
+    //             res => res.json()
+    //         )
+    //         .then(
+    //             data => $("#dialog-zone").prepend(postMessage(data.quote, 'bot'))
+    //             .ready(function() {
+    //                 $('.message:first-child').fadeIn(500)
 
-                    //     console.log("i fade")
-
-                    // })
-                })
-            )
+    //             })
+    //         )
 
 
-    }
-    // console.log(fetch('https://api.kanye.rest').then().quote)
-    // return fetch('https://api.kanye.rest').then(response => response.json()).then(quotes => quotes.quote)
-    // fetch method adapted from https://morioh.com/p/c57b2941ac28
-    // console.log(yeez)
+    // }
 })
