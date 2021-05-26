@@ -4,8 +4,8 @@
     flex-direction: column;
     border: 5px solid black;
     border-radius: 5px;
-    background-color: tomato;
-    height: 600px;
+    background-color: rgb(133, 236, 164);
+    height: 500px;
     width: 350px;
 }
 
@@ -19,22 +19,30 @@
 }
 
 #user-zone {
-    align-self: center;
-    margin: 5px;
+    border: 10px solid grey;
+    flex-direction: column;
+    align-self: stretch;
     padding: 5px;
-    height: 200px;
-    width: 300px;
+    height: 100px;
+    /* width: 300px; */
+}
+
+#text-zone {
+    position: relative;
+    left: 12px;
+    align-self: stretch;
+    flex-direction: row;
+    /* justify-content: space-evenly; */
 }
 
 #text-input {
-    align-self: flex-start;
     width: 245px;
+    height: 25px;
 }
 
-button {
-    border-radius: 25%;
-    border: 3px solid black;
-    display: inline-block;
+h1 {
+    font-size: large;
+    font-family: fantasy;
 }
 
 .button:hover {
@@ -42,8 +50,11 @@ button {
 }
 
 #send-button {
+    position: relative;
     border-radius: 100%;
+    top: 8px;
     background-color: rgb(255, 126, 238);
+    border: 3px solid black;
     width: 40px;
     height: 40px;
 }
@@ -51,14 +62,12 @@ button {
 .message {
     font-size: small;
     text-align: left;
-    margin: 4px;
     padding: 7px;
     border-radius: 5px;
 }
 
 .user-message {
     text-align: right;
-    justify-self: right;
     background-color: green;
 }
 

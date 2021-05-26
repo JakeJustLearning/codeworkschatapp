@@ -33,26 +33,42 @@ function sendMessage(input) {
 
 
 
-
-
 $(document).ready(function() {
     document.querySelector("#text-input").addEventListener("keydown", function(e) {
-        if (e.code === "Enter") {
+        if ((e.code === "Enter") && (document.querySelector('#text-input').value.length > 0)) {
             console.log("clicked in the form and pressed enter")
 
             getUserMessage()
+            buttonDisabled()
 
         }
     })
 
 
 
-    $("#send-button").click(function(e) {
+    document.querySelector('#text-input').oninput = (i) => {
+        console.log('input')
+        buttonDisabled()
+    }
+
+    document.querySelector('#text-input').addEventListener('change', function() {
+        console.log('change')
+        buttonDisabled()
+    })
+
+
+    document.querySelector("#send-button").addEventListener('click', function(e) {
         console.log("send has been clicked")
 
         getUserMessage()
+        buttonDisabled()
 
     })
+
+    function buttonDisabled() {
+        const btnDisabled = document.querySelector('#text-input').value.length < 1
+        $('#send-button').attr('disabled', btnDisabled)
+    }
 
 
     function getUserMessage() {
@@ -75,21 +91,4 @@ $(document).ready(function() {
         const time = (sendTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
         return `<p style="display:none" class="message ${(author == "bot")?"bot-message":"user-message"}">${input} </br>(${date} ${time}) </p>`
     }
-
-    // async function getYeezy() {
-    //     console.log('getting yeez')
-    //     const breakfast = fetch('https://api.kanye.rest')
-    //         .then(
-    //             res => res.json()
-    //         )
-    //         .then(
-    //             data => $("#dialog-zone").prepend(postMessage(data.quote, 'bot'))
-    //             .ready(function() {
-    //                 $('.message:first-child').fadeIn(500)
-
-    //             })
-    //         )
-
-
-    // }
 })

@@ -19,9 +19,11 @@
         <div id="dialog-zone">
         </div>
         <div id="user-zone">
-            <input type="text" id="text-input" />
-            <button class="material-icons-round button" type="button" id="send-button">send</button>
-            <h1 style="text-align: center;">Chat Bot of a Generation</h1>
+            <div id="text-zone">
+                <input type="text" id="text-input" name="message" />
+                <button class="material-icons-round button" type="button" disabled='message == ""' id="send-button">send</button>
+            </div>
+            <h1 style="text-align: center;">Thank You for Sharing</h1>
         </div>
     </div>
 </body>
