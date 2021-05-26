@@ -77,10 +77,26 @@ $(document).ready(function() {
             // postMessage(temp, 'user')
         $("#dialog-zone").prepend(postMessage(temp, 'user'))
         $('.message:first-child').fadeIn(500, function() {
-            $("#dialog-zone").prepend(postMessage('Thank you for sharing that with me.', 'bot')).ready(function() {
+            $("#dialog-zone").prepend(postMessage(randomString(temp), 'bot')).ready(function() {
                 $('.message:first-child').fadeIn(500)
             })
         })
+
+    }
+
+    function randomString(message) {
+        let text = message.split('')
+        for (let i = text.length - 1; i > 0; i--) {
+            const x = Math.floor(Math.random() * i)
+            let temp = text[x]
+            text[x] = text[i]
+            text[i] = temp
+        }
+        text = text.join("")
+        speech = new SpeechSynthesisUtterance()
+        speech.text = text
+        window.speechSynthesis.speak(speech)
+        return text
 
     }
 
