@@ -50,20 +50,20 @@ $(document).ready(function() {
         let temp = document.querySelector('#text-input').value
         document.querySelector('#text-input').value = ''
             // postMessage(temp, 'user')
-        $("#dialog-zone").prepend(postMessage(temp, 'user'))
-        $('.message:first-child').fadeIn(500, function() {
-            scrollToTop()
-            $("#dialog-zone").prepend(postMessage(randomString(temp), 'bot')).ready(function() {
-                $('.message:first-child').fadeIn(500, function() {
-                    scrollToTop()
+        $("#dialog-zone").append(postMessage(temp, 'user'))
+        $('.message:last-child').fadeIn(500, function() {
+            scrollToBottom()
+            $("#dialog-zone").append(postMessage(randomString(temp), 'bot')).ready(function() {
+                $('.message:last-child').fadeIn(500, function() {
+                    scrollToBottom()
                 })
             })
         })
 
     }
 
-    function scrollToTop() {
-        document.querySelector('#dialog-zone').scrollTo(0, 0)
+    function scrollToBottom() {
+        document.querySelector('#dialog-zone').scrollTo(0, document.querySelector('#dialog-zone').scrollHeight)
     }
 
     function randomString(message) {
