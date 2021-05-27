@@ -1,28 +1,3 @@
-// function respond(input) {
-//     return "Hello world"
-// }
-
-// function sendMessage(that) {
-//     console.log(that.message.value)
-//     return false
-// }
-
-
-// JQUERY
-// $(document).ready(function() {
-//     $("#send-button").click(function() {
-//         console.log("click")
-//         document.getElementById('chat-form').submit(function(e) {
-//             e.preventDefault()
-//             console.log 
-//             return false
-
-//         })
-
-//     });
-
-// });
-
 let messageContent = ''
 
 function sendMessage(input) {
