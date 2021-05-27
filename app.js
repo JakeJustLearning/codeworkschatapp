@@ -77,11 +77,18 @@ $(document).ready(function() {
             // postMessage(temp, 'user')
         $("#dialog-zone").prepend(postMessage(temp, 'user'))
         $('.message:first-child').fadeIn(500, function() {
+            scrollToTop()
             $("#dialog-zone").prepend(postMessage(randomString(temp), 'bot')).ready(function() {
-                $('.message:first-child').fadeIn(500)
+                $('.message:first-child').fadeIn(500, function() {
+                    scrollToTop()
+                })
             })
         })
 
+    }
+
+    function scrollToTop() {
+        document.querySelector('#dialog-zone').scrollTo(0, 0)
     }
 
     function randomString(message) {
@@ -93,9 +100,9 @@ $(document).ready(function() {
             text[i] = temp
         }
         text = text.join("")
-        speech = new SpeechSynthesisUtterance()
-        speech.text = text
-        window.speechSynthesis.speak(speech)
+            // speech = new SpeechSynthesisUtterance()
+            // speech.text = text
+            // window.speechSynthesis.speak(speech)
         return text
 
     }
